@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Resources/Styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/Resources/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Home | Amazing Events</title>
+</head>
+<body class="bg-body-tertiary">
+    <div id="app">
+
+        <header class="pt-4 pb-4 pr-4 bg-light">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+              <div class="container-fluid">
+                <a class="navbar-brand w-50" href="#">
+                  <img src="../Resources/amazing_brand.png" alt="BrandLogo" class="img-fluid imagen-logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end col-lg-9" id="navbarNavAltMarkup">
+                  <div class="navbar-nav justify-content-around col-lg-12">
+                      <div class="d-flex justify-content-center align-items-center">
+                          <i class="bi bi-house icon-size"></i>
+                          <a class="nav-link p-2" href="#">HOME</a>
+                      </div>
+                      <div class="d-flex justify-content-center align-items-center">
+                          <i class="bi bi-calendar-event icon-size"></i>
+                          <a class="nav-link p-2" href="/Pages/UpcomingEvents.html">UPCOMING EVENTS</a>
+                      </div>
+                      <div class="d-flex justify-content-center align-items-center">
+                          <i class="bi bi-calendar-event-fill icon-size"></i>
+                          <a class="nav-link p-2" href="/Pages/PastEvents.html">PAST EVENTS</a>
+                      </div>
+                      <div class="d-flex justify-content-center align-items-center">
+                          <i class="bi bi-person-lines-fill icon-size"></i>
+                          <a class="nav-link p-2" href="/Pages/Contact.html">CONTACT</a>
+                      </div>
+                      <div class="d-flex justify-content-center align-items-center">
+                          <i class="bi bi-bar-chart icon-size"></i>
+                          <a class="nav-link p-2" href="/Pages/Stats.html">STATS</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </header>
+
+          <main class="main-height bg-body-tertiary flex-wrap">
+        
+                <section class="d-flex justify-content-center align-items-center mt-5 mb-2">
+                  <h1>Home</h1>
+                </section>
+                <div id="carouselExampleSlidesOnly" class="carousel slide carousel-height" data-bs-ride="carousel">
+                    <div class="carousel-inner carousel-height">
+                      <div class="carousel-item active carousel-height">
+                        <div class="d-flex justify-content-center">
+                            <img src="../Resources/books.jpg" class="d-block w-100" alt="Books">
+                        </div>
+                      </div>
+                      <div class="carousel-item carousel-height">
+                        <div class="d-flex justify-content-center">
+                            <img src="../Resources/cinema_recorte.png" class="d-block w-100" alt="Cinema">
+                        </div>
+        
+                      </div>
+                        <div class="carousel-item carousel-height">
+                            <div class="d-flex justify-content-center">
+                                <img src="../Resources/concert_recorte.png" class="d-block w-100" alt="Music concert">
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Checkbox -->
+                  <div>
+                    <nav class="navbar bg-body-tertiary mt-5 justify-content-center">
+                      <div class="container-fluid col-lg-8 d-flex justify-content-start gap-4" id="checkbox">
+                        <div v-for="categoria of categorias" class="form-check">
+                            <input @change = "filtroCruzado" class="form-check-input category_filter" type="checkbox" v-bind:value="categoria" v-model="categoriasChecked" v-bind:id="`category_${categoria}`">
+                            <label class="form-check-label " v-bind:for="`category_${categoria}`">
+                              <p class="checkboxLabel">{{categoria}}</p>
+                            </label>
+                        </div>
+                      </div>
+                      
+                      <!--cuando hago submit me reinicia la pagina-->
+                      <div class="col-lg-3 d-flex justify-content-center">
+                        <form class="d-flex" role="search" @submit.prevent="filtroCruzado">
+                          <input v-model="inputSearchValue" class="form-control me-2" id="searchBar" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success" id="searchButton" type="submit" >Search</button>
+                        </form>
+                      </div>
+                    </nav>
+                  </div>
+        
+                  <div class="d-flex flex-direction-row justify-content-around mt-5 bg-body-tertiary flex-wrap gap-3" id="cardsContainer">
+                    <div v-for="evento of eventosFiltrados" class="card" style="width: 18rem;">
+                      <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <div class="card-height d-flex flex-column justify-content-center align-items-center">
+                          <img v-bind:src="evento.image" alt="evento.name" class="card-img">
+                          <h5 class="card-title">{{evento.name}}</h5>
+                          <p class="card-text">{{evento.description}}</p>
+                        </div>
+                        <div class="d-flex justify-content-around align-items-baseline gap-4">
+                          <p>${{evento.price}}</p>
+                          <button type="button" class="btn btn-primary"><a :href=`/Pages/Details.html?id=${evento._id}` class="card-link color-details">Details</a></button>                  
+                        </div>
+                      </div>
+                    </div>
+                    <div v-if="estaVacio">
+                      <p>There are no results according to your search</p>
+                    </div>
+                  </div>
+          </main>
+        
+          <footer class="d-flex justify-content-center align-items-center mt-5">
+                <div class="socials d-flex col-lg-4">
+                  <a href="https://www.facebook.com/" target="_blank"><img src="../Resources/facebook.png" alt="Facebook"></a>
+                  <a href="https://www.instagram.com/" target="_blank"><img src="../Resources/instagram.png" alt="Instagram"></a>
+                  <a href="https://www.whatsapp.com/" target="_blank"><img src="../Resources/whatsapp.png" alt="WhatsApp"></a>
+                </div>
+                <p class="col-lg-4">All rights reserved &copy; 2023 - Marcos Rodríguez</p>
+                <p class="col-lg-4">COHORT FS051 JAVA</p>
+          </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../JS/main.js"></script>
+</body>
+</html>

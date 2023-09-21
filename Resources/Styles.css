@@ -1,0 +1,121 @@
+.imagen-logo {
+    width: 50%;
+}
+
+.background-color {
+    background-color: white !important;
+}
+
+.background-color-main {
+    background: linear-gradient(to bottom, #fafafa, #a8a8a8);
+}
+
+.icon-size {
+    font-size: 24px !important;
+}
+
+.sticky-header {
+    position: sticky !important;
+    top: 0 !important;
+}
+
+.carousel-height {
+    height: 30vh !important;
+}
+
+.color-h5 {
+    color: black !important;
+    font-size: 60px !important;
+    font-weight: bold !important;
+    margin-bottom: 10vh;
+}
+
+.main-height {
+    min-height: 85vh !important;
+}
+
+.nav-height {
+    height: 10vh !important;
+}
+
+.navbar img {
+    height: 100% !important;
+}
+
+.card-img {
+    width: 100% !important;
+    border: solid 1px black;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.socials img {
+    width: 4vh !important;
+    margin: 1vh;
+}
+
+.form-size {
+    width: 50vh !important;
+}
+
+.details-card {
+    margin-top: 8rem !important;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 50% !important;
+}
+
+.details_width{
+    width: 50vh;
+}
+
+#Details4 {
+    margin-bottom: 10rem !important;
+}
+
+.border-card {
+    border: solid 2px black;
+    padding: 11px;
+}
+
+.details-card img {
+    border: solid 2px black;
+}
+
+.table.width{
+    width: 80vh !important;
+}
+
+.card-height {
+    min-height : 35vh !important;
+}
+
+.color-details{
+    color: black !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+}
+
+.containerDetails {
+    min-height: 100vh;
+}
+
+@media (max-width: 768px){
+    .details-card{
+        width: 40vh !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .form-size {
+        width: 30vh !important;
+    }
+}
