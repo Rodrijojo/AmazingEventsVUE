@@ -90,7 +90,7 @@
                                 <tr>
                                     <td>{{categoria.categoria}}</td>
                                     <td>${{categoria.revenue}}</td>
-                                    <td>%{{categoria.porcentaje}}</td>
+                                    <td>%{{categoria.porcentaje.toFixed(2)}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -105,9 +105,11 @@
                                     <td><strong>% of assistance</strong></td>  
                                 </tr>
                             </thead>
-                            <tbody id="terceraTabla">
+                            <tbody id="terceraTabla" v-for="categoria in categoriasAcumuladasPast">
                                 <tr>
-                                    
+                                    <td>{{categoria.categoria}}</td>
+                                    <td>${{categoria.revenue}}</td>
+                                    <td>%{{categoria.porcentaje.toFixed(2)}}<br></td>
                                 </tr>                           
                             </tbody>
                         </table>

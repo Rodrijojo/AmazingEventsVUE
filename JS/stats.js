@@ -19,7 +19,7 @@ createApp({
       categoriasUpcoming: [],
       eventosAgrupadosUpcoming: [],
       eventosAgrupadosPast: [],
-      categoriasAcumuladas: [],
+      categoriasAcumuladasPast: [],
       categoriasAcumuladasUpcoming: []
     }
   },
@@ -43,7 +43,7 @@ createApp({
         this.categoriasUpcoming = this.guardarCategory(this.eventosFiltrados[1])
         this.eventosAgrupadosUpcoming = this.agruparPorCategoria(this.eventosFiltrados[1], this.categoriasUpcoming)
         this.eventosAgrupadosPast = this.agruparPorCategoria(this.eventosFiltrados[0], this.categoriasPast)
-        this.categoriasAcumuladas = this.acumulador(this.eventosAgrupadosPast)
+        this.categoriasAcumuladasPast = this.acumulador(this.eventosAgrupadosPast)
         this.categoriasAcumuladasUpcoming = this.acumuladorUpcoming(this.eventosAgrupadosUpcoming)
       })
       .catch(error => console.log(error))
@@ -78,12 +78,12 @@ createApp({
     agruparPorCategoria (eventos, categorias) {
         let arrayPorCategoria = []
         for (const categoria of categorias) {
-            arrayPorCategoria.push(eventos.filter(evento => evento.category === categoria))
+            arrayPorCategoria.push(eventos.filter(evento => evento.category == categoria))
         }
         return arrayPorCategoria
     },
     guardarCategory (eventos) {
-        let categorias = Array.from(new Set (...eventos.map(evento => evento.category)))
+        let categorias = Array.from(new Set (eventos.map(evento => evento.category)))
         return categorias;
     },
     highestAssistance (eventos) {
@@ -137,6 +137,7 @@ createApp({
         return [largestEvent, largestCapacity]
     },
     acumulador (arrayEventos) {
+        console.log(arrayEventos)
         let arrayAcumulado = []
         for (const subArray of arrayEventos) {
             arrayAcumulado.push(subArray.reduce((acc, cur) => {
@@ -150,6 +151,7 @@ createApp({
         return arrayAcumulado
     },
     acumuladorUpcoming (arrayEventos) {
+        console.log(arrayEventos)
         let arrayAcumulado = []
         for (const subArray of arrayEventos) {
             arrayAcumulado.push(subArray.reduce((acc, cur) => {
